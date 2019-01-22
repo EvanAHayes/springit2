@@ -8,7 +8,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 //let spring know there is a properties file
-@EnableConfigurationProperties(SpringitProperties.class)
 public class Springit2Application {
 
 	public static void main(String[] args) {
