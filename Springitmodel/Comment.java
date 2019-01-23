@@ -1,8 +1,6 @@
 package com.ehayes.springit2.Springitmodel;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,10 @@ import javax.persistence.ManyToOne;
 import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
+@ToString
 @NoArgsConstructor
 public class Comment extends Auditable {
 

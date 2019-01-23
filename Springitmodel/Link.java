@@ -1,9 +1,6 @@
 package com.ehayes.springit2.Springitmodel;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +11,9 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 public class Link extends Auditable {
 
@@ -31,6 +30,15 @@ public class Link extends Auditable {
     //when display a link may have comments on link display some comments about the link
     //one link to many comments map one to many
     @OneToMany(mappedBy = "link")
-    private List<Comment> comment = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
+
+    public Link(@NonNull String title, @NonNull String url) {
+        this.title = title;
+        this.url = url;
+    }
+
+    public void addComment(Comment comment){
+        comments.add(comment);
+    }
 }
