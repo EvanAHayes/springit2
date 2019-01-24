@@ -16,7 +16,5 @@ public class Springit2Application {
 		SpringApplication.run(Springit2Application.class, args);
 	}
 
-
-
 }
 
