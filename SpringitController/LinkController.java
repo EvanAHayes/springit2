@@ -1,8 +1,6 @@
 package com.ehayes.springit2.SpringitController;
 import com.ehayes.springit2.SpringitRepository.LinkRepository;
 import com.ehayes.springit2.Springitmodel.Link;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,7 +62,7 @@ public class LinkController {
             //save the link
             linkRepository.save(link);
             redirectAttributes
-                    .addAttribute("link", link)
+                    .addAttribute("link", link.getId())
             //flash attribute is a attribute that will only live on the next template you visit
                     .addFlashAttribute("success", true);
                     return "redirect:/link/{id}";
