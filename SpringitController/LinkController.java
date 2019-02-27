@@ -62,7 +62,7 @@ public class LinkController {
             //save the link
             linkRepository.save(link);
             redirectAttributes
-                    .addAttribute("link", link.getId())
+                    .addAttribute("id", link.getId())
             //flash attribute is a attribute that will only live on the next template you visit
                     .addFlashAttribute("success", true);
                     return "redirect:/link/{id}";

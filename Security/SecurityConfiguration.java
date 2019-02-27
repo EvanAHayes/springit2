@@ -5,7 +5,6 @@ import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointR
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -28,13 +27,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 //Remember that rules are read top down
            .authorizeRequests()
+
                 .requestMatchers(EndpointRequest.to("info")).permitAll()
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
                 .antMatchers("/actuator/").hasRole("ADMIN")
                 .antMatchers("/").permitAll()
                 .antMatchers("/link/submit").hasRole("USER")
            .and()
-           .formLogin();
+           .formLogin()
+                .loginPage("/login")
+           .permitAll()
+            .usernameParameter("email")
+            .and()
+            .logout()
+        //cookie based approaced to remember me
+            .and()
+            .rememberMe();
 
     }
 
