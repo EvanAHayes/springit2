@@ -40,36 +40,17 @@ public class Link extends Auditable {
     @URL(message = "please enter a valid url")
     private String url;
 
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
-//
-//    public String getTitle() {
-//        return title;
-//    }
-//
-//    public void setTitle(String title) {
-//        this.title = title;
-//    }
-//
-//    public String getUrl() {
-//        return url;
-//    }
-//
-//    public void setUrl(String url) {
-//        this.url = url;
-//    }
-
 //comments
 
     //when display a link may have comments on link display some comments about the link
     //one link to many comments map one to many
     @OneToMany(mappedBy = "link")
     private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "link")
+    private List<Vote> votes = new ArrayList<>();
+
+    private int voteCount = 0;
 
 
     public void addComment(Comment comment){
