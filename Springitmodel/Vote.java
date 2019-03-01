@@ -8,10 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-@NoArgsConstructor
 @RequiredArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 public class Vote extends Auditable{
 
     @Id
@@ -21,8 +21,9 @@ public class Vote extends Auditable{
     @NonNull
     private short direction;
 
-    @NonNull
+
     @ManyToOne
+    @NonNull
     private Link link;
 
     //user

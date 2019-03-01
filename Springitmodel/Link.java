@@ -23,7 +23,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class Link extends Auditable {
 

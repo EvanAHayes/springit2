@@ -17,7 +17,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class User implements UserDetails {
 
