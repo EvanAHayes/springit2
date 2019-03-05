@@ -1,4 +1,6 @@
 package com.ehayes.springit2.SpringitController;
+import com.ehayes.springit2.Service.CommentService;
+import com.ehayes.springit2.Service.LinkService;
 import com.ehayes.springit2.SpringitRepository.CommentRepositiory;
 import com.ehayes.springit2.SpringitRepository.LinkRepository;
 import com.ehayes.springit2.Springitmodel.Comment;
@@ -25,26 +27,26 @@ public class LinkController {
     private static final Logger logger = LoggerFactory.getLogger(LinkController.class);
 
     @Autowired
-    private LinkRepository linkRepository;
+    private LinkService linkService;
 
     @Autowired
-    private CommentRepositiory commentRepositiory;
+    private CommentService commentService;
 
-    public LinkController(LinkRepository linkRepository, CommentRepositiory commentRepositiory) {
-        this.linkRepository = linkRepository;
-        this.commentRepositiory = commentRepositiory;
+    public LinkController(LinkService linkService, CommentService commentService) {
+        this.linkService = linkService;
+        this.commentService = commentService;
     }
 
     @GetMapping("/")
     public String list(Model model){
-        model.addAttribute("links", linkRepository.findAll());
+        model.addAttribute("links", linkService.findAll());
         return "list";
     }
 
     //view page controller for each links
     @GetMapping("/link/{id}")
     public String Read(@PathVariable long id, Model model){
-        Optional<Link> link = linkRepository.findById(id);
+        Optional<Link> link = linkService.findById(id);
         if(link.isPresent() ){
             Link currentLink = link.get();
             Comment comment = new Comment();
@@ -74,7 +76,7 @@ public class LinkController {
 
         }else{
             //save the link
-            linkRepository.save(link);
+            linkService.save(link);
             redirectAttributes
                     .addAttribute("id", link.getId())
             //flash attribute is a attribute that will only live on the next template you visit
@@ -91,7 +93,7 @@ public class LinkController {
         if( bindingResult.hasErrors() ) {
             logger.info("Something went wrong.");
         } else {
-            commentRepositiory.save(comment);
+            commentService.save(comment);
             logger.info("New Comment Saved!");
         }
         return "redirect:/link/" + comment.getLink().getId();

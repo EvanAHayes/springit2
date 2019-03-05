@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
+//used to get beans in and out of packages
 @Service
 public class BeanUtil implements ApplicationContextAware {
 
